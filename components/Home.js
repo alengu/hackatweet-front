@@ -6,6 +6,7 @@ import Tweet from "./Tweet";
 import LastTweets from "./LastTweets";
 import Hashtag from "./Hashtag";
 import usersModel from "../../hackatweet-back/models/users";
+import Trends from "./Trends";
 
 function Home() {
   const [tweetContent, setTweetContent] = useState("");
@@ -97,12 +98,10 @@ function Home() {
 
         <div className={styles.homeRight}>
           <div className={styles.lastTrendsTitle}>
-            <h2>Last Trends</h2>
+            <h2>Trends</h2>
           </div>
 
-          <div className={styles.lastTrendsContainer}>
-            {/* <Trends/> */} Plenty of hashtags here
-          </div>
+          <div className={styles.lastTrendsContainer}>{<Trends />}</div>
         </div>
       </main>
     </div>

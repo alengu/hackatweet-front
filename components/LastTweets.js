@@ -2,44 +2,21 @@ import styles from "../styles/Home.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
-import moment from 'moment';
-import Tweet from  './Tweet'
+import moment from "moment";
+import Tweet from "./Tweet";
 
 function LastTweets(props) {
-
   const [tweetsData, setTweetsData] = useState([]);
 
-  const tweetData = [
-    {
-      author: "Alex",
-      username:"Alexu",
-      content: "#Backend rocks",
-      submittedAt: new Date(),
-      likes: 5,
-      userLikes: ["user15", "user2", "user4"],
-      hashTags: ["Backend"],
-    },
-    {
-      author: "Henri",
-      username:"Ritonn",
-      content: "#God and #Genealogy rocks",
-      submittedAt: new Date(),
-      likes: 3,
-      userLikes: ["user1", "user72", "user44"],
-      hashTags: ["god", "genealogy"],
-    },
-    {
-      author: "Etienne",
-      username:"kamoo",
-      content: "My #baby rocks her #Genealogy",
-      submittedAt: new Date(),
-      likes: 6,
-      userLikes: ["user15", "user24", "user4"],
-      hashTags: ["baby", "genealogy"],
-    },
-  ];
+  useEffect(() => {
+    (async () => {
+      const response = await fetch("http://localhost:3000/tweets/");
+      const data = await response.json();
+      setTweetsData(data);
+    })();
+  }, []);
 
-  let tweets = tweetData.map((data, i) => {
+  let tweets = tweetsData.map((data, i) => {
     let age = moment(data.submittedAt, "YYYYMMDD,h:mm:ss").fromNow();
     return (
       <Tweet
@@ -54,11 +31,7 @@ function LastTweets(props) {
     );
   });
 
-  return (
-    <div className={styles.lastTweetsContainer}>
-      {tweets}
-    </div>
-  );
+  return <div className={styles.lastTweetsContainer}>{tweets}</div>;
 }
 
 export default LastTweets;
