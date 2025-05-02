@@ -21,21 +21,13 @@ function Signup() {
         });
         const data = await response.json();
         try {
-            dispatch(login({ username, token: data.token }));
+            dispatch(login({ _id: data._id, username, token: data.token }));
             setusername('');
             setPassword('');
             router.push('/');      
         } catch(error) {
             msg = data.error;
         }
-        // if (data) {
-        //     dispatch(login({ username, token: data.token }));
-        //     setusername('');
-        //     setPassword('');
-        //     router.push('/index');        
-        // } else {
-        //     msg = data.error;
-        // }
     }
 
     return (
