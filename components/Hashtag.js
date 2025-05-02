@@ -1,10 +1,10 @@
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Hashtag.module.css";
 
-function Home() {
+function Hashtag() {
   return (
     <div>
       <main className={styles.main}>
-        <div className={styles.homeLeft}>
+        <div className={styles.hashtagLeft}>
           <div className={styles.logoContainer}>
             <img className={styles.logo} src="hackatweet-logo.jpg" alt="Hackatweet Logo" />
           </div>
@@ -23,33 +23,26 @@ function Home() {
           </div>
         </div>
 
-        <div className={styles.homeCenter}>
-          <div className={styles.homeCenterTopContainer}>
+        <div className={styles.hashtagCenter}>
+          <div className={styles.hashtagCenterTopContainer}>
             <div className={styles.pageTitle}>
-              <h1> HOME </h1>
+              <h1> Hashtag </h1>
             </div>
-            <div className={styles.newTweetContainer}>
+            <div className={styles.hashtagSearchContainer}>
               <input
-                className={styles.newTweetInput}
-                placeholder="What's up?"
+                className={styles.hashtagSearch}
+                placeholder="#"
               />
-              <div className={styles.tweetSubmissionContainer}>
-                <span className={styles.newTweetLength}>24/280</span>
-                <input
-                  className={styles.newTweetButton}
-                  type="button"
-                  value="TWEET"
-                />
-              </div>
+              
             </div>
           </div>
-          <div className={styles.homeCenterBottomContainer}>
+          <div className={styles.hashtagCenterBottomContainer}>
             Plenty of tweets here
             {/* <LastTweets/> */}
           </div>
         </div>
 
-        <div className={styles.homeRight}>
+        <div className={styles.hashtagRight}>
           <div className={styles.lastTrendsTitle}>
             <h2>Last Trends</h2>
           </div>
@@ -61,4 +54,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Hashtag;
