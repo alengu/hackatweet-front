@@ -1,0 +1,60 @@
+.globalContainer {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    grid-template-rows: repeat(14, 1fr);
+    height: 100vh;
+}
+
+.leftContainer {
+    grid-row-start: 1;
+    grid-row-end: 15;
+    grid-column-start: 1;
+    grid-column-end: 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/background.png');
+    background-size: cover;
+    background-position: center center;
+}
+
+.rightContainer {
+    grid-row-start: 1;
+    grid-row-end: 15;
+    grid-column-start: 6;
+    grid-column-end: 15;
+    background-color: #151d27;
+    padding: 20px;
+}
+
+.logo {
+    height: 50px;
+    width: 50px;
+}
+
+.titre {
+    width: 30%;
+    color: white;
+    font-size: 50px;
+}
+
+.slogan {
+    color: white;
+    font-size: 35px;
+}
+
+.registerContainer {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+	margin-bottom: 10px;
+}
+
+.signupBtn {
+    cursor: pointer;
+}
+
+.signinBtn {
+    cursor: pointer;
+}
