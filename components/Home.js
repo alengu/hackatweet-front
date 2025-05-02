@@ -5,7 +5,6 @@ import moment from "moment";
 import Tweet from "./Tweet";
 import LastTweets from "./LastTweets";
 import Hashtag from "./Hashtag";
-import usersModel from "../../hackatweet-back/models/users";
 
 function Home() {
   const [tweetContent, setTweetContent] = useState("");
