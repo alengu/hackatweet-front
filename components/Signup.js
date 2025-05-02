@@ -10,7 +10,7 @@ function Signup() {
     return (
         <div className={styles.registerContainer}>
             <div className={styles.registerSection}>
-                <p>Sign-up</p>
+                <h2>Create your Hackatweet account</h2>
                 <input type="text" placeholder="Firstname" id="signUpFirstname" onChange={(e) => setFirstName(e.target.value)} value={firstname} />
                 <input type="text" placeholder="Username" id="signUpUsername" onChange={(e) => setusername(e.target.value)} value={username} />
                 <input type="password" placeholder="Password" id="signUpPassword" onChange={(e) => setPassword(e.target.value)} value={password} />

@@ -26,7 +26,6 @@
 .registerContainer {
 	display: flex;
 	margin-bottom: 10px;
-	border-top: 0.5px lightgray solid;
 }
 
 .signupBtn {
