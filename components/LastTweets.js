@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import moment from "moment";
 import Tweet from "./Tweet";
 
-function LastTweets(props) {
+function LastTweets() {
   const [tweetsData, setTweetsData] = useState([]);
 
   useEffect(() => {
@@ -17,10 +17,12 @@ function LastTweets(props) {
   }, []);
 
   let tweets = tweetsData.map((data, i) => {
+    
     let age = moment(data.submittedAt, "YYYYMMDD,h:mm:ss").fromNow();
     return (
       <Tweet
-        key={i}
+        key={data._id}
+        id={data._id}
         firstName={data.author}
         username={data.username}
         content={data.content}

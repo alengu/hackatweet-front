@@ -5,7 +5,8 @@ import moment from "moment";
 import Tweet from "./Tweet";
 import LastTweets from "./LastTweets";
 import Hashtag from "./Hashtag";
-import usersModel from "../../hackatweet-back/models/users";
+import Link from "next/link";
+
 import Trends from "./Trends";
 
 function Home() {
@@ -49,11 +50,13 @@ function Home() {
       <main className={styles.main}>
         <div className={styles.homeLeft}>
           <div className={styles.logoContainer}>
+            <Link href="/">
             <img
               className={styles.logo}
               src="hackatweet-logo.jpg"
               alt="Hackatweet Logo"
             />
+            </Link>
           </div>
           <div className={styles.userInfoContainer}>
             {token && (
