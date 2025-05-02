@@ -23,7 +23,7 @@ function Login() {
                     <h1 className={styles.titre}>See what's happening</h1>
                     <h2 className={styles.slogan}>Join Hackatweet today.</h2>
                     <button className={styles.signupBtn} onClick={() => setVisibleModal("signup")}> Sign up </button>
-                    <p>Already have an account ?</p>
+                    <p className={styles.phrase}>Already have an account ?</p>
                     <button className={styles.signinBtn} onClick={() => setVisibleModal("signin")}> Sign in </button>
                 </div>
             </div>
