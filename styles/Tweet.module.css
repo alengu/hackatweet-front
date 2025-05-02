@@ -1,0 +1,36 @@
+.tweetCard {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border-bottom:1px solid gray;
+  
+}
+
+.tweetBottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
+.userFirstName {
+  color: white;
+  font-weight: 800;
+}
+.userUsername {
+  color: gray;
+}
+
+.tweetAge{
+    color:gray;
+}
+.tweetContent {
+  margin: 5px;
+  height: 50px;
+}
+.tweetLikes {
+  margin: 5px;
+}
+
+.deleteButton {
+  margin: 5px;
+}
