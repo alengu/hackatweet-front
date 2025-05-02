@@ -1,4 +1,9 @@
 import styles from "../styles/Home.module.css";
+import { useState, useEffect } from "react";
+import moment from "moment";
+import Tweet from "./Tweet";
+import LastTweets from "./LastTweets";
+import Hashtag from "./Hashtag";
 
 function Home() {
   return (
@@ -6,7 +11,11 @@ function Home() {
       <main className={styles.main}>
         <div className={styles.homeLeft}>
           <div className={styles.logoContainer}>
-            <img className={styles.logo} src="hackatweet-logo.jpg" alt="Hackatweet Logo" />
+            <img
+              className={styles.logo}
+              src="hackatweet-logo.jpg"
+              alt="Hackatweet Logo"
+            />
           </div>
           <div className={styles.userInfoContainer}>
             <div className={styles.userPictureContainer}>
@@ -44,8 +53,8 @@ function Home() {
             </div>
           </div>
           <div className={styles.homeCenterBottomContainer}>
-            Plenty of tweets here
-            {/* <LastTweets/> */}
+          
+            <LastTweets />
           </div>
         </div>
 
@@ -54,7 +63,9 @@ function Home() {
             <h2>Last Trends</h2>
           </div>
 
-          <div className={styles.lastTrendsContainer}>{/* <Trends/> */} Plenty of hashtags here</div>
+          <div className={styles.lastTrendsContainer}>
+            {/* <Trends/> */} Plenty of hashtags here
+          </div>
         </div>
       </main>
     </div>
