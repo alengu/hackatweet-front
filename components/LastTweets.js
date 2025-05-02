@@ -43,6 +43,7 @@ function LastTweets(props) {
     let age = moment(data.submittedAt, "YYYYMMDD,h:mm:ss").fromNow();
     return (
       <Tweet
+        key={i}
         firstName={data.author}
         username={data.username}
         content={data.content}
