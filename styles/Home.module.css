@@ -19,46 +19,59 @@
   justify-content: space-between;
   align-items: flex-start;
   padding: 10px;
-  
+
   background-color: rgb(1, 1, 22);
   color: white;
   border-right: 1px gray solid;
 }
 
-
 .logoContainer  {
   width: 100%;
-  
 }
 
-.logo{
-  width:100px;
+.logo {
+  width: 100px;
   aspect-ratio: auto;
 }
 
 .userInfoContainer {
   width: 100%;
   display: flex;
-  
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
 }
 
 .userDetailsContainer  {
-  display: flex;
-  flex-direction: column;
   width: 85%;
+  color: white;
+  margin: 30px;
+  border: solid 1px red;
 }
 
 .userPictureContainer {
   width: 15%;
   height: 100%;
   min-width: 30px;
+  margin-right:5px;
+}
+
+.userPicture {
+  width: 50px;
+  aspect-ratio: auto;
+  border-radius: 50%;
 }
 
 .userFirstName {
   width: 100%;
+
 }
 .userUsername {
   width: 100%;
+  color: gray;
+
 }
 
 .homeCenter {
@@ -67,8 +80,8 @@
   display: flex;
   flex-direction: column;
   padding: 10px;
-  
-  color:white;
+
+  color: white;
   background-color: rgb(1, 1, 22);
 }
 
@@ -77,15 +90,15 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  
+
   border-bottom: gray;
 }
 
-.pageTitle{
+.pageTitle {
   width: 100%;
-  height:40px;
+  height: 40px;
   text-align: left;
-  
+
   display: flex;
   align-items: center;
 }
@@ -94,62 +107,54 @@
   width: 100%;
   padding: 30px;
 
-  
-  display:flex;
+  display: flex;
   flex-direction: column;
 }
 
 .newTweetInput {
   width: 100%;
   height: 75px;
-  
 }
 
-.tweetSubmissionContainer{
-
-  display:flex;
+.tweetSubmissionContainer {
+  display: flex;
   justify-content: right;
 }
 
-.newTweetLength{
-  margin:10px;
+.newTweetLength {
+  margin: 10px;
 }
 
-.newTweetButton{
-  margin:10px;
+.newTweetButton {
+  margin: 10px;
   background-color: lightblue;
 }
 .homeCenterBottomContainer {
-
-  height:75%;
-  width:100%;
-
+  height: 75%;
+  width: 100%;
 }
 
 .homeRight {
-  width: 40%;
+  width: 30%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 10px;
-  
-  color:white;
+
+  color: white;
   background-color: rgb(1, 1, 22);
-  border-left: 1px lightgray solid;
+  border-left: 1px gray solid;
 }
 
-.lastTrendsTitle{
+.lastTrendsTitle {
   width: 100%;
-  height:40px;
+  height: 40px;
   text-align: left;
-  
+
   display: flex;
   align-items: center;
 }
 
-
-
-.lastTrendsContainer{
-  width:100%;
-  
+.lastTrendsContainer {
+  width: 100%;
 }
