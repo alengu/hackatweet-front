@@ -1,0 +1,38 @@
+.globalContainer {
+    display: grid;
+    grid-template-columns: repeat(14, 1fr);
+    grid-template-rows: repeat(14, 1fr);
+}
+
+.leftContainer {
+    grid-row-start: 1;
+    grid-row-end: 15;
+    grid-column-start: 1;
+    grid-column-end: 6;
+    border: 1px solid black;
+    height: 100vh;
+}
+
+.rightContainer {
+    grid-row-start: 1;
+    grid-row-end: 15;
+    grid-column-start: 6;
+    grid-column-end: 15;
+    border: 1px solid blue;
+    height: 100vh;
+    padding: 20px;
+}
+
+.registerContainer {
+	display: flex;
+	margin-bottom: 10px;
+	border-top: 0.5px lightgray solid;
+}
+
+.signupBtn {
+    cursor: pointer;
+}
+
+.signinBtn {
+    cursor: pointer;
+}
