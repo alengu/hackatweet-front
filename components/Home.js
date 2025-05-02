@@ -11,7 +11,11 @@ import Trends from "./Trends";
 function Home() {
   const [tweetContent, setTweetContent] = useState("");
   let token = useSelector((state) => state.users.value.token);
-  let author = token && useSelector((state) => state.users.value.id);
+  let author = token && useSelector((state) => state.users.value._id);
+  let userfirstName =
+    token && useSelector((state) => state.users.value.firstName);
+  let userUsername =
+    token && useSelector((state) => state.users.value.username);
 
   //add a new tweet
   async function handleTweetSubmit() {
@@ -52,17 +56,21 @@ function Home() {
             />
           </div>
           <div className={styles.userInfoContainer}>
-            <div className={styles.userPictureContainer}>
-              <img
-                className={styles.userPicture}
-                src=""
-                alt="User Profile Picture"
-              />
-            </div>
-            <div className={styles.userDetailsContainer}>
-              <div className={styles.userFirstName}>John</div>
-              <div className={styles.userUsername}>@johncena</div>
-            </div>
+            {token && (
+              <>
+                <div className={styles.userPictureContainer}>
+                  <img
+                    className={styles.userPicture}
+                    src="anonymousUser.jpg"
+                    alt="User Profile Picture"
+                  />
+                </div>
+                <div className={styles.userDetailsContainer}>
+                  <div className={styles.userFirstName}>{userfirstName}</div>
+                  <div className={styles.userUsername}>@{userUsername}</div>
+                </div>
+              </>
+            )}
           </div>
         </div>
 

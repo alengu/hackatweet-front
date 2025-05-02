@@ -20,6 +20,7 @@
   align-items: flex-start;
   padding: 10px;
 
+
   background-color: rgb(1, 1, 22);
   color: white;
   border-right: 1px gray solid;
@@ -37,25 +38,41 @@
 .userInfoContainer {
   width: 100%;
   display: flex;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
 }
 
 .userDetailsContainer  {
-  display: flex;
-  flex-direction: column;
   width: 85%;
+  color: white;
+  margin: 30px;
+  border: solid 1px red;
 }
 
 .userPictureContainer {
   width: 15%;
   height: 100%;
   min-width: 30px;
+  margin-right:5px;
+}
+
+.userPicture {
+  width: 50px;
+  aspect-ratio: auto;
+  border-radius: 50%;
 }
 
 .userFirstName {
   width: 100%;
+
 }
 .userUsername {
   width: 100%;
+  color: gray;
+
 }
 
 .homeCenter {
@@ -103,6 +120,7 @@
 .tweetSubmissionContainer {
   display: flex;
   justify-content: right;
+  align-items: center;
 }
 
 .newTweetLength {
@@ -111,7 +129,11 @@
 
 .newTweetButton {
   margin: 10px;
-  background-color: lightblue;
+  background-color: rgb(81, 206, 248);
+  color:white;
+  width: 80px; 
+  height:30px;
+  border-radius: 15px;
 }
 .homeCenterBottomContainer {
   height: 75%;
@@ -119,7 +141,7 @@
 }
 
 .homeRight {
-  width: 40%;
+  width: 30%;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -127,13 +149,16 @@
 
   color: white;
   background-color: rgb(1, 1, 22);
-  border-left: 1px lightgray solid;
+  border-left: 1px gray solid;
 }
 
 .lastTrendsTitle {
+.lastTrendsTitle {
   width: 100%;
   height: 40px;
+  height: 40px;
   text-align: left;
+
 
   display: flex;
   align-items: center;
