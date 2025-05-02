@@ -1,10 +1,10 @@
-
-
 import styles from '../styles/login.module.css';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 function Signin() {
 
+    const dispatch = useDispatch();
     const [username, setusername] = useState('');
     const [password, setPassword] = useState('');
 
