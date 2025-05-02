@@ -21,7 +21,7 @@ function Signin() {
             });
             const data = await response.json();
             try {
-                dispatch(login({ _id: data._id, username, token: data.token }));
+                dispatch(login({ _id: data._id, firstname: data.firstname, username, token: data.token }));
                 setusername('');
                 setPassword('');
                 router.push('/');      
