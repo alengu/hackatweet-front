@@ -5,12 +5,11 @@ import moment from "moment";
 import Tweet from "./Tweet";
 import LastTweets from "./LastTweets";
 import Hashtag from "./Hashtag";
-import usersModel from "../../hackatweet-back/models/users";
 
 function Home() {
   const [tweetContent, setTweetContent] = useState("");
   let token = useSelector((state) => state.users.value.token);
-  let author = token && useSelector((state) => state.users.value.id);
+  let author = token && useSelector((state) => state.users.value._id);
 
   //add a new tweet
   async function handleTweetSubmit() {
