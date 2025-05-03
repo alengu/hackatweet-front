@@ -1,15 +1,22 @@
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from 'next/router';
 import moment from "moment";
 import Tweet from "./Tweet";
 import LastTweets from "./LastTweets";
 import Hashtag from "./Hashtag";
 
 function Home() {
+  const router = useRouter();
   const [tweetContent, setTweetContent] = useState("");
   let token = useSelector((state) => state.users.value.token);
   let author = token && useSelector((state) => state.users.value._id);
+  const isConnected = useSelector((state) => state.users.value.username);
+
+  if (!isConnected) {
+    router.push('/login');
+  }
 
   //add a new tweet
   async function handleTweetSubmit() {
