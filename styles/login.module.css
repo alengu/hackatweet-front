@@ -24,7 +24,7 @@
     grid-column-start: 6;
     grid-column-end: 15;
     background-color: #151d27;
-    padding: 20px;
+    padding: 30px;
 }
 
 .logo {
@@ -33,7 +33,7 @@
 }
 
 .titre {
-    width: 30%;
+    width: 40%;
     color: white;
     font-size: 50px;
 }
@@ -52,9 +52,27 @@
 }
 
 .signupBtn {
+    font-weight: bold;
+    color: white;
+    width: 200px;
+    height: 40px;
     cursor: pointer;
+    background-color: #3690ed;
+    border: 0;
+    border-radius: 25px;
 }
 
 .signinBtn {
+    font-weight: bold;
+    color: #3690ed;
+    width: 200px;
+    height: 40px;
     cursor: pointer;
+    background-color: #151d27;
+    border: 1px solid gray;
+    border-radius: 25px;
+}
+
+.phrase {
+    color: white;
 }
