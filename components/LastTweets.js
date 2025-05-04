@@ -2,63 +2,67 @@ import styles from "../styles/Home.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
-import moment from 'moment';
-import Tweet from  './Tweet'
+import { useSelector } from 'react-redux';
+import moment from "moment";
+import Tweet from "./Tweet";
 
-function LastTweets(props) {
-
+function LastTweets() {
   const [tweetsData, setTweetsData] = useState([]);
+  let token = useSelector((state) => state.users.value.token);
+  let author = token && useSelector((state) => state.users.value._id);
 
-  const tweetData = [
-    {
-      author: "Alex",
-      username:"Alexu",
-      content: "#Backend rocks",
-      submittedAt: new Date(),
-      likes: 5,
-      userLikes: ["user15", "user2", "user4"],
-      hashTags: ["Backend"],
-    },
-    {
-      author: "Henri",
-      username:"Ritonn",
-      content: "#God and #Genealogy rocks",
-      submittedAt: new Date(),
-      likes: 3,
-      userLikes: ["user1", "user72", "user44"],
-      hashTags: ["god", "genealogy"],
-    },
-    {
-      author: "Etienne",
-      username:"kamoo",
-      content: "My #baby rocks her #Genealogy",
-      submittedAt: new Date(),
-      likes: 6,
-      userLikes: ["user15", "user24", "user4"],
-      hashTags: ["baby", "genealogy"],
-    },
-  ];
+  useEffect(() => {
+    (async () => {
+      const response = await fetch("http://localhost:3000/tweets/");
+      const data = await response.json();
+      setTweetsData(data);
+    })();
+  }, []);
 
-  let tweets = tweetData.map((data, i) => {
+  // delete tweet function
+  async function handleDelete(tweetId) {
+    try {
+      const tweet = tweetsData.find((e) => e._id === tweetId);
+      console.log(tweet);
+      const tweetAuthor = tweet.author;
+      console.log(tweetAuthor);
+      if (tweetAuthor === author) {
+      const response = await fetch(
+        `http://localhost:3000/tweets/${tweetId}`,
+        {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" }
+        }
+      );
+      const deletedTweet = await response.json();
+      console.log("Tweet deleted =>", deletedTweet.deletedCount);
+      setTweetsData(tweets.filter(tweet => tweet.id !== tweetId));
+    }
+    } catch (error) {
+      console.error("Deletion failed");
+      alert("An error occurred. Please try again.");
+    } 
+  };
+
+  let tweets = tweetsData.map((data, i) => {
+    
     let age = moment(data.submittedAt, "YYYYMMDD,h:mm:ss").fromNow();
     return (
       <Tweet
-        key={i}
+        key={data._id}
+        id={data._id}
         firstName={data.author}
         username={data.username}
         content={data.content}
         age={age}
         likes={data.userLikes.length}
         userLikes={data.userLikes}
+        onDelete={handleDelete}
       />
     );
   });
 
-  return (
-    <div className={styles.lastTweetsContainer}>
-      {tweets}
-    </div>
-  );
+  return <div className={styles.lastTweetsContainer}>{tweets}</div>;
 }
 
 export default LastTweets;

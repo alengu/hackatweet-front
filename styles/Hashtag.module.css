@@ -27,12 +27,14 @@
 
 .logoContainer  {
   width: 100%;
+  cursor:pointer;
   
 }
 
 .logo {
   width: 100px;
   aspect-ratio: auto;
+  cursor:pointer;
 }
 
 .userInfoContainer {

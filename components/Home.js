@@ -6,16 +6,29 @@ import moment from "moment";
 import Tweet from "./Tweet";
 import LastTweets from "./LastTweets";
 import Hashtag from "./Hashtag";
+import Link from "next/link";
+
+import Trends from "./Trends";
 
 function Home() {
   const router = useRouter();
   const [tweetContent, setTweetContent] = useState("");
+  const [tweets, setTweets] = useState([]);
+
   let token = useSelector((state) => state.users.value.token);
   let author = token && useSelector((state) => state.users.value._id);
-  const isConnected = useSelector((state) => state.users.value.username);
+  let userfirstName =
+    token && useSelector((state) => state.users.value.firstName);
+  let userUsername =
+    token && useSelector((state) => state.users.value.username);
 
-  if (!isConnected) {
-    router.push('/login');
+  // redirects to signin page if not connected
+  if (!token) {
+    try {
+      router.push('/login');     
+  } catch(error) {
+      console.log('redirection échouée');
+  }
   }
 
   //add a new tweet
@@ -29,7 +42,6 @@ function Home() {
     try {
       const response = await fetch(
         "http://localhost:3000/tweets/",
-
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -37,8 +49,9 @@ function Home() {
         }
       );
       const addedTweet = await response.json();
-      console.log("added fact =>", addedTweet);
-      console.log("id de l'added fact = ", addedTweet._id);
+      console.log("added tweet =>", addedTweet);
+      console.log("id de l'added tweet = ", addedTweet._id);
+      setTweets(tweet);
     } catch (error) {
       console.error("Submission failed", error);
       alert("An error occurred. Please try again.");
@@ -50,24 +63,30 @@ function Home() {
       <main className={styles.main}>
         <div className={styles.homeLeft}>
           <div className={styles.logoContainer}>
+            <Link href="/">
             <img
               className={styles.logo}
               src="hackatweet-logo.jpg"
               alt="Hackatweet Logo"
             />
+            </Link>
           </div>
           <div className={styles.userInfoContainer}>
-            <div className={styles.userPictureContainer}>
-              <img
-                className={styles.userPicture}
-                src=""
-                alt="User Profile Picture"
-              />
-            </div>
-            <div className={styles.userDetailsContainer}>
-              <div className={styles.userFirstName}>John</div>
-              <div className={styles.userUsername}>@johncena</div>
-            </div>
+            {token && (
+              <>
+                <div className={styles.userPictureContainer}>
+                  <img
+                    className={styles.userPicture}
+                    src="anonymousUser.jpg"
+                    alt="User Profile Picture"
+                  />
+                </div>
+                <div className={styles.userDetailsContainer}>
+                  <div className={styles.userFirstName}>{userfirstName}</div>
+                  <div className={styles.userUsername}>@{userUsername}</div>
+                </div>
+              </>
+            )}
           </div>
         </div>
 
@@ -103,12 +122,10 @@ function Home() {
 
         <div className={styles.homeRight}>
           <div className={styles.lastTrendsTitle}>
-            <h2>Last Trends</h2>
+            <h2>Trends</h2>
           </div>
 
-          <div className={styles.lastTrendsContainer}>
-            {/* <Trends/> */} Plenty of hashtags here
-          </div>
+          <div className={styles.lastTrendsContainer}>{<Trends />}</div>
         </div>
       </main>
     </div>
