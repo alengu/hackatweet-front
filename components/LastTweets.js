@@ -15,7 +15,7 @@ function LastTweets(props) {
         key={data._id}
         id={data._id}
         userId={data.author._id}
-        firstName={data.author.firstName}
+        firstName={data.author.firstname}
         username={data.author.username}
         content={data.content}
         age={moment(moment(data.submittedAt, "YYYYMMDD,h:mm:ss"))

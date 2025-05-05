@@ -15,13 +15,21 @@
 .userFirstName {
   color: white;
   font-weight: 800;
+  margin-right: 5px;
+  margin-left: 2px;
 }
 .userUsername {
   color: gray;
+  margin-right: 5px;
+}
+
+.hashtagLink {
+  color: #1DA1F2;
 }
 
 .tweetAge{
     color:gray;
+    margin-left: 5px;
 }
 .tweetContent {
   margin: 5px;
@@ -36,4 +44,24 @@
 .deleteButton {
   margin: 5px;
   cursor:pointer;
+}
+
+.userPictureContainer {
+ 
+  height: 100%;
+  min-width: 30px;
+  margin-right: 8px;
+}
+
+.userPicture {
+  width: 50px;
+  aspect-ratio: auto;
+  border-radius: 50%;
+}
+
+.tweetTop{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: gray;
 }

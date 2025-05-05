@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 import Link from "next/link";
+import { useResetIconStyle } from "antd/es/theme/internal";
 
 function Tweet(props) {
   let token = useSelector((state) => state.users.value.token);
@@ -12,6 +13,7 @@ function Tweet(props) {
   let likeStyle = isLiked ? { color: "red" } : {};
   const [likesNumber, setLikesNumber] = useState(0);
   let userId = useSelector((state) => state.users.value._id);
+  let profilePic=useSelector((state) => state.users.value.profilePic)
 
   useEffect(() => {
     (async () => {
@@ -65,7 +67,11 @@ function Tweet(props) {
     return content.split(/(\s+)/).map((word, index) => {
       if (word.startsWith("#")) {
         return (
-          <Link key={index} href={`/hashtags/${word.replace("#", "")}`}>
+          <Link
+            className={styles.hashtagLink}
+            key={index}
+            href={`/hashtags/${word.replace("#", "")}`}
+          >
             {word}
           </Link>
         );
@@ -78,10 +84,14 @@ function Tweet(props) {
     <div className={styles.tweetCard}>
       <div className={styles.tweetTop}>
         <div className={styles.userPictureContainer}>
-          <img className={styles.userPicture} />
+          <img
+            className={styles.userPicture}
+            src={profilePic}
+            alt="User Profile Picture"
+          />
         </div>
         <span className={styles.userFirstName}> {props.firstName} </span>
-        <span className={styles.userUsername}> @{props.username} </span> .
+        <span className={styles.userUsername}> @{props.username} </span> ⸱
         <span className={styles.tweetAge}> {props.age}</span>
       </div>
       <div className={styles.tweetContent}>{addHashtagLink(props.content)}</div>

@@ -53,6 +53,7 @@ padding:5px;
 border-radius: 5px;
 min-width: 70px;
 }
+
 .userInfoContainer {
   width: 100%;
   display: flex;
@@ -121,15 +122,18 @@ min-width: 70px;
 
 .newTweetContainer {
   width: 100%;
-  padding: 30px;
-
+  padding: 10px;
   display: flex;
   flex-direction: column;
 }
 
 .newTweetInput {
   width: 100%;
-  height: 75px;
+  height: 38px;
+  background-color: #151d27;
+  border: 1px solid rgb(68, 68, 68);
+  border-radius: 12px;
+  padding: 0 10px;
 }
 
 .tweetSubmissionContainer {
@@ -144,8 +148,9 @@ min-width: 70px;
 
 .newTweetButton {
   margin: 10px;
-  background-color: rgb(81, 206, 248);
+  background-color: #2d78c6;
   color: white;
+  font-weight: bold;
   width: 80px;
   height: 30px;
   border-radius: 15px;
@@ -169,9 +174,7 @@ min-width: 70px;
 }
 
 .lastTrendsTitle {
-}
-
-.lastTrendsTitle {
+  font-weight: bold;
   width: 100%;
   height: 40px;
   height: 40px;
@@ -202,10 +205,15 @@ min-width: 70px;
   justify-content: center;
   align-items: left;
   padding: 20px;
+  cursor: pointer;
 }
 
 .trend:hover {
   background-color: rgba(64, 64, 77, 0.9);
+}
+
+.trendsTitle {
+  font-weight: bold;
 }
 
 .spinner {

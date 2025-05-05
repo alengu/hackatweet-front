@@ -19,6 +19,7 @@ function Home() {
   let author = user._id;
   let userfirstName = user.firstName;
   let userUsername = user.username;
+  let profilePic=user.profilePic
 
   const [tweetsData, setTweetsData] = useState([]);
   const [trendsData, setTrendsData] = useState([]);
@@ -45,12 +46,6 @@ function Home() {
     }
   }, [token]);
 
-  // if (isCheckingAuth)
-  //   return (
-  //     <div className="flex justify-center items-center h-screen">
-  //       <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
-  //     </div>
-  //   );
 
   async function handleTweetSubmit() {
     const tweet = {
@@ -116,7 +111,7 @@ function Home() {
             <Link href="/">
               <img
                 className={styles.logo}
-                src="/hackatweet-logo.jpg"
+                src="/hackatweet-logo2.png"
                 alt="Hackatweet Logo"
               />
             </Link>
@@ -128,7 +123,7 @@ function Home() {
                   <div className={styles.userPictureContainer}>
                     <img
                       className={styles.userPicture}
-                      src="anonymousUser.jpg"
+                      src={profilePic}
                       alt="User Profile Picture"
                     />
                   </div>
@@ -154,7 +149,7 @@ function Home() {
         <div className={styles.homeCenter}>
           <div className={styles.homeCenterTopContainer}>
             <div className={styles.pageTitle}>
-              <h1> HOME </h1>
+              <h1> Home </h1>
             </div>
             <div className={styles.newTweetContainer}>
               <input
@@ -170,7 +165,7 @@ function Home() {
                 <input
                   className={styles.newTweetButton}
                   type="button"
-                  value="TWEET"
+                  value="Tweet"
                   onClick={() => handleTweetSubmit()}
                 />
               </div>
