@@ -1,3 +1,7 @@
 .trend:hover {
     opacity: 0.5;
   }
+
+  .trend{
+    cursor:pointer;
+  }

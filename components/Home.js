@@ -2,22 +2,23 @@ import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
-
+import { logout } from "../reducers/users";
 import LastTweets from "./LastTweets";
 import Link from "next/link";
 import Trends from "./Trends";
+import { faUsersBetweenLines } from "@fortawesome/free-solid-svg-icons";
 
 function Home() {
   const router = useRouter();
   const [tweetContent, setTweetContent] = useState("");
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+  const dispatch = useDispatch();
 
-  let token = useSelector((state) => state.users.value.token);
-  let author = token && useSelector((state) => state.users.value._id);
-  let userfirstName =
-    token && useSelector((state) => state.users.value.firstName);
-  let userUsername =
-    token && useSelector((state) => state.users.value.username);
+  let user = useSelector((state) => state.users.value)
+  let token = user.token;
+  let author = user._id;
+  let userfirstName = user.firstName;
+  let userUsername = user.username;
 
   const [tweetsData, setTweetsData] = useState([]);
   const [trendsData, setTrendsData] = useState([]);
@@ -42,7 +43,7 @@ function Home() {
         console.log("redirection échouée");
       }
     }
-  }, []);
+  }, [token]);
 
   // if (isCheckingAuth)
   //   return (
@@ -52,7 +53,6 @@ function Home() {
   //   );
 
   async function handleTweetSubmit() {
-    // manque la gestion des hashtags à l'ajout du tweet
     const tweet = {
       author,
       content: tweetContent,
@@ -73,6 +73,7 @@ function Home() {
       console.error("Submission failed", error);
       alert("An error occurred. Please try again.");
     }
+    setTweetContent('')
   }
 
   // delete tweet function
@@ -95,6 +96,11 @@ function Home() {
     }
   }
 
+  async function handleLogoutClick() {
+    dispatch(logout());
+    router.push("/login");
+  }
+
   useEffect(() => {
     (async () => {
       await getTweets();
@@ -115,22 +121,33 @@ function Home() {
               />
             </Link>
           </div>
-          <div className={styles.userInfoContainer}>
-            {token && (
-              <>
-                <div className={styles.userPictureContainer}>
-                  <img
-                    className={styles.userPicture}
-                    src="anonymousUser.jpg"
-                    alt="User Profile Picture"
-                  />
-                </div>
-                <div className={styles.userDetailsContainer}>
-                  <div className={styles.userFirstName}>{userfirstName}</div>
-                  <div className={styles.userUsername}>@{userUsername}</div>
-                </div>
-              </>
-            )}
+          <div className={styles.homeLeftBottomInfoContainer}>
+            <div className={styles.userInfoContainer}>
+              {token && (
+                <>
+                  <div className={styles.userPictureContainer}>
+                    <img
+                      className={styles.userPicture}
+                      src="anonymousUser.jpg"
+                      alt="User Profile Picture"
+                    />
+                  </div>
+                  <div className={styles.userDetailsContainer}>
+                    <div className={styles.userFirstName}>{userfirstName}</div>
+                    <div className={styles.userUsername}>@{userUsername}</div>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className={styles.logoutContainer}>
+              <input
+                type="button"
+                className={styles.logoutButton}
+                value="Logout"
+                onClick={() => handleLogoutClick()}
+                style={{ cursor: "pointer" }}
+              ></input>
+            </div>
           </div>
         </div>
 

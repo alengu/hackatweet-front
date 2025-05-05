@@ -7,7 +7,7 @@ import { useState } from "react";
 function LastTweets(props) {
   const [tweetsData, setTweetsData] = useState([]);
   let token = useSelector((state) => state.users.value.token);
-  let author = token && useSelector((state) => state.users.value._id);
+  let author = useSelector((state) => state.users.value._id);
 
   const tweets = props.tweets.map((data, i) => {
     return (
@@ -17,7 +17,7 @@ function LastTweets(props) {
         firstName={data.author}
         username={data.username}
         content={data.content}
-        age={moment(data.submittedAt, "YYYYMMDD,h:mm:ss").fromNow()}
+        age={moment(moment(data.submittedAt, "YYYYMMDD,h:mm:ss")).add(  2,'h').fromNow()}
         likes={data.userLikes.length}
         userLikes={data.userLikes}
         onDelete={props.handleDelete}
