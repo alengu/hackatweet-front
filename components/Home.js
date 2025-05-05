@@ -19,7 +19,6 @@ function Home() {
   let author = user._id;
   let userfirstName = user.firstName;
   let userUsername = user.username;
-  let profilePic=user.profilePic
 
   const [tweetsData, setTweetsData] = useState([]);
   const [trendsData, setTrendsData] = useState([]);
@@ -124,7 +123,7 @@ function Home() {
                   <div className={styles.userPictureContainer}>
                     <img
                       className={styles.userPicture}
-                      src={profilePic}
+                      src="anonymousUser.jpg"
                       alt="User Profile Picture"
                     />
                   </div>
