@@ -58,18 +58,29 @@ min-width: 70px;
 .userInfoContainer {
   width: 100%;
   display: flex;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
 .userDetailsContainer  {
-  display: flex;
-  flex-direction: column;
   width: 85%;
+  color: white;
+  margin: 30px;
 }
 
 .userPictureContainer {
   width: 15%;
   height: 100%;
   min-width: 30px;
+  margin-right: 5px;
+}
+
+.userPicture {
+  width: 50px;
+  aspect-ratio: auto;
+  border-radius: 50%;
 }
 
 .userFirstName {
@@ -77,6 +88,7 @@ min-width: 70px;
 }
 .userUsername {
   width: 100%;
+  color: gray;
 }
 
 .hashtagCenter {
@@ -109,15 +121,30 @@ min-width: 70px;
 }
 
 .hashtagSearchContainer {
+  width: 100%;
+  height: 38px;
+  background-color: #151d27;
+  border: 1px solid rgb(68, 68, 68);
+  border-radius: 12px;
+  padding: 0 10px;
   display: flex;
   padding: 20px;
   text-align: center;
   align-items: center;
+  border: 0;
 }
 .hashtagSearch {
   width: 100%;
   min-height: 40px;
+  background-color: transparent;
 }
+
+.hashtagSearch:focus {
+  outline: none;
+  border: none;
+}
+
+
 .hashtagCenterBottomContainer {
   height: 75%;
   width: 100%;
@@ -125,7 +152,7 @@ min-width: 70px;
 }
 
 .hashtagRight {
-  width: 40%;
+  width: 30%;
   height: 100vh;
   display: flex;
   flex-direction: column;
