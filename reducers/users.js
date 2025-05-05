@@ -16,10 +16,10 @@ export const usersSlice = createSlice({
       state.value.firstName = action.payload.firstname;
     },
     logout: (state) => {
-      state.value.token = '';
-      state.value.username = '';
-      state.value.firstName = '';
-      state.value._id = '';
+      state.value.token = "";
+      state.value.username = "";
+      state.value.firstName = "";
+      state.value._id = "";
     },
   },
 });

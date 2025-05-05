@@ -78,7 +78,6 @@ function Home() {
 
   // delete tweet function
   async function handleDelete(tweetId) {
-    console.log(tweetId);
     try {
       const tweet = tweetsData.find((e) => e._id === tweetId);
       const tweetAuthor = tweet.author._id;

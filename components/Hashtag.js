@@ -24,11 +24,12 @@ function Hashtag() {
 
   const router = useRouter();
 
+  //const { hashtags } = router.query;
+  const query = router.query;
+  const hashtags = query.hashtags ? query.hashtags[0] : null;
+
   const [tweetsData, setTweetsData] = useState([]);
   const [trendsData, setTrendsData] = useState([]);
-  const [hashtagsFilter, setHashtagsFilter] = useState(null);
-
-  const { hashtags } = router.query;
 
   const getTweets = async (value) => {
     const url = value
@@ -59,13 +60,7 @@ function Hashtag() {
     (async () => {
       await getTweets(hashtags);
     })();
-  }, [hashtags, router.isReady]);
-
-  useEffect(() => {
-    (async () => {
-      await getTweets(hashtagsFilter);
-    })();
-  }, [hashtagsFilter]);
+  }, [hashtags]);
 
   useEffect(() => {
     (async () => {
@@ -144,7 +139,8 @@ function Hashtag() {
               <input
                 className={styles.hashtagSearch}
                 placeholder=""
-                onChange={(e) => setHashtagsFilter(e.target.value)}
+                onChange={(e) => router.replace(`/hashtags/${e.target.value}`)}
+                value={hashtags}
               />
             </div>
           </div>

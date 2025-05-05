@@ -10,7 +10,6 @@ function LastTweets(props) {
   let author = useSelector((state) => state.users.value._id);
 
   const tweets = props.tweets.map((data, i) => {
-    console.log(data);
     return (
       <Tweet
         key={data._id}
