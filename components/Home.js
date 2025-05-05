@@ -155,7 +155,7 @@ function Home() {
         <div className={styles.homeCenter}>
           <div className={styles.homeCenterTopContainer}>
             <div className={styles.pageTitle}>
-              <h1> HOME </h1>
+              <h1> Home </h1>
             </div>
             <div className={styles.newTweetContainer}>
               <input
@@ -171,7 +171,7 @@ function Home() {
                 <input
                   className={styles.newTweetButton}
                   type="button"
-                  value="TWEET"
+                  value="Tweet"
                   onClick={() => handleTweetSubmit()}
                 />
               </div>
