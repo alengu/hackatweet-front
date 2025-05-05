@@ -5,8 +5,10 @@ import { useState, useEffect } from "react";
 import moment from "moment";
 import Trend from "./Trend";
 
+
 function Trends(props) {
   const [trendsData, setTrendsData] = useState([]);
+
 
   useEffect(() => {
     (async () => {
