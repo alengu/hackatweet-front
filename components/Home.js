@@ -122,7 +122,7 @@ function Home() {
                   <div className={styles.userPictureContainer}>
                     <img
                       className={styles.userPicture}
-                      src="anonymousUser.jpg"
+                      src="/anonymousUser.jpg"
                       alt="User Profile Picture"
                     />
                   </div>
