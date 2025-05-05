@@ -30,6 +30,9 @@
     grid-column-end: 15;
     background-color: #151d27;
     padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 }
 
 .logo {
@@ -41,11 +44,15 @@
     width: 40%;
     color: white;
     font-size: 50px;
+    font-family: Verdana, sans-serif;
+    font-weight: bold;
 }
 
 .slogan {
     color: white;
     font-size: 35px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
 }
 
 .registerContainer {
@@ -89,7 +96,9 @@
 }
 
 .phrase {
+    margin-left: 10px;
     color: white;
+    font-weight: 600;
 }
 
 .loginModalTitle{
@@ -108,7 +117,7 @@
     color: gray;
     margin:10px;
     padding-left: 10px;
-    
+    border-radius: 7px;
 }
 
 .modalSigninButton{
