@@ -33,9 +33,6 @@ function Home() {
 
   }, [])
 
-  // redirects to signin page if not connected
-
-
   //add a new tweet
   async function handleTweetSubmit() {
     const tweet = {

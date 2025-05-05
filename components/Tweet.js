@@ -19,22 +19,45 @@ function Tweet(props) {
       );
       const data = await response.json();
 
-      setLikesNumber(data.userLikes.length);
+      setLikesNumber(data.userLikes.length); // au chargement de la page, affichage du nombre de likes du tweet
       if (data.userLikes.some((e) => e === userId)) {
         setIsLiked(true);
       } else {
         setIsLiked(false);
       }
     })();
-
   }, []);
 
-  async function handleLikeClick() { // pour lundi !@Etienne
-    //si isLiked = true => alors supprimer l'utilisateur de la liste des userLikes et update le nombre
+  async function handleLikeClick() {
+    let userlikedTweet = { tweetId: props.id, userId: userId };
 
-    //si is liked = false => alors ajouter l'utilisateur de la liste des userLikes
+    if (!isLiked) {
+      setLikesNumber((prev) => prev + 1);
+      setIsLiked(true);
 
-    setIsLiked(!isLiked);
+      let responseLike = await fetch(
+        "http://localhost:3000/tweets/userLikes/like",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userlikedTweet),
+        }
+      );
+      let tweetliked = responseLike.json();
+    } else {
+      setLikesNumber((prev) => prev - 1);
+      setIsLiked(false);
+
+      let responseUnlike = await fetch(
+        "http://localhost:3000/tweets/userLikes/unlike",
+        {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(userlikedTweet),
+        }
+      );
+      let tweetUnliked = responseUnlike.json();
+    }
   }
 
   return (
