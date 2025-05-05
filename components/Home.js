@@ -19,7 +19,6 @@ function Home() {
   let author = user._id;
   let userfirstName = user.firstName;
   let userUsername = user.username;
-  let profilePic=user.profilePic
 
   const [tweetsData, setTweetsData] = useState([]);
   const [trendsData, setTrendsData] = useState([]);
@@ -73,7 +72,6 @@ function Home() {
 
   // delete tweet function
   async function handleDelete(tweetId) {
-    console.log(tweetId);
     try {
       const tweet = tweetsData.find((e) => e._id === tweetId);
       const tweetAuthor = tweet.author._id;
@@ -124,7 +122,7 @@ function Home() {
                   <div className={styles.userPictureContainer}>
                     <img
                       className={styles.userPicture}
-                      src={profilePic}
+                      src="/anonymousUser.jpg"
                       alt="User Profile Picture"
                     />
                   </div>
