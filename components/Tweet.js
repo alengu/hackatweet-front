@@ -65,7 +65,11 @@ function Tweet(props) {
     return content.split(/(\s+)/).map((word, index) => {
       if (word.startsWith("#")) {
         return (
-          <Link key={index} href={`/hashtags/${word.replace("#", "")}`}>
+          <Link
+            className={styles.hashtagLink}
+            key={index}
+            href={`/hashtags/${word.replace("#", "")}`}
+          >
             {word}
           </Link>
         );
@@ -78,10 +82,14 @@ function Tweet(props) {
     <div className={styles.tweetCard}>
       <div className={styles.tweetTop}>
         <div className={styles.userPictureContainer}>
-          <img className={styles.userPicture} />
+          <img
+            className={styles.userPicture}
+            src="anonymousUser.jpg"
+            alt="User Profile Picture"
+          />
         </div>
         <span className={styles.userFirstName}> {props.firstName} </span>
-        <span className={styles.userUsername}> @{props.username} </span> .
+        <span className={styles.userUsername}> @{props.username} </span> ⸱
         <span className={styles.tweetAge}> {props.age}</span>
       </div>
       <div className={styles.tweetContent}>{addHashtagLink(props.content)}</div>
