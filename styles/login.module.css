@@ -4,6 +4,11 @@
     grid-template-rows: repeat(14, 1fr);
     height: 100vh;
 }
+.modal{
+    padding:0px;
+    border:0px;
+    background-color: rgba(38, 38, 47);
+}
 
 .leftContainer {
     grid-row-start: 1;
@@ -49,6 +54,16 @@
     align-items: center;
     justify-content: center;
 	margin-bottom: 10px;
+    min-width:350px;
+    min-height:400px;
+    background-color: rgba(38, 38, 47);
+}
+
+.registerSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .signupBtn {
@@ -75,4 +90,34 @@
 
 .phrase {
     color: white;
+}
+
+.loginModalTitle{
+    font-weight: 900;
+    color:white;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.loginField{
+    width:50%;
+    min-width: 200px;
+    height:35px;
+    background-color: rgba(38, 38, 47);
+    border:1px solid gray;
+    color: gray;
+    margin:10px;
+    padding-left: 10px;
+    
+}
+
+.modalSigninButton{
+    background-color: white;
+    color : rgba(38, 38, 47);
+    height:36px;
+    width:50%;
+    min-width: 200px;
+    border-radius: 18px;
+    font-weight: 700;
+    margin:10px;
 }

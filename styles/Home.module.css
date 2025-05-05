@@ -206,5 +206,22 @@ min-width: 70px;
 
 .trend:hover {
   background-color: rgba(64, 64, 77, 0.9);
+}
+
+.spinner {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  display: none;
+  margin: 20px auto;
+  z-index:10000;
+}
+.spinnerBackground{
+  width:100vw;
+  height:100vh;
+  background-color: lightgray;
 
 }
