@@ -10,7 +10,7 @@ import { Provider } from 'react-redux';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 const reducers = combineReducers({ users });
-const persistConfig = { key: 'applicationName', storage };
+const persistConfig = { key: 'hackatweet', storage };
 
 const store = configureStore({
   reducer: persistReducer(persistConfig, reducers),
