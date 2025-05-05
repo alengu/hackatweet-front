@@ -17,6 +17,11 @@ function Hashtag() {
   let userUsername =
     token && useSelector((state) => state.users.value.username);
 
+  async function handleLogoutClick() {
+    dispatch(logout());
+    router.push("/login");
+  }
+
   const router = useRouter();
 
   const [tweetsData, setTweetsData] = useState([]);
@@ -81,22 +86,32 @@ function Hashtag() {
               />
             </Link>
           </div>
-          <div className={styles.userInfoContainer}>
-            {token && (
-              <>
-                <div className={styles.userPictureContainer}>
-                  <img
-                    className={styles.userPicture}
-                    src="anonymousUser.jpg"
-                    alt="User Profile Picture"
-                  />
-                </div>
-                <div className={styles.userDetailsContainer}>
-                  <div className={styles.userFirstName}>{userfirstName}</div>
-                  <div className={styles.userUsername}>@{userUsername}</div>
-                </div>
-              </>
-            )}
+          <div className={styles.hashtagLeftBottomInfoContainer}>
+            <div className={styles.userInfoContainer}>
+              {token && (
+                <>
+                  <div className={styles.userPictureContainer}>
+                    <img
+                      className={styles.userPicture}
+                      src="anonymousUser.jpg"
+                      alt="User Profile Picture"
+                    />
+                  </div>
+                  <div className={styles.userDetailsContainer}>
+                    <div className={styles.userFirstName}>{userfirstName}</div>
+                    <div className={styles.userUsername}>@{userUsername}</div>
+                  </div>
+                </>
+              )}
+            </div>
+            <div className={styles.logoutContainer}>
+              <input
+                type="button"
+                className={styles.logoutButton}
+                value="Logout"
+                onClick={() => handleLogoutClick()}
+              ></input>
+            </div>
           </div>
         </div>
 

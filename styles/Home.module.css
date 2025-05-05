@@ -35,7 +35,24 @@
   aspect-ratio: auto;
   cursor: pointer;
 }
+.homeLeftBottomInfoContainer{
+  display:flex;
+  flex-direction: column;
+  min-height: 80px;
+  justify-content: space-between;
+  width:100%;
+}
 
+.logoutButton{
+background-color: rgb(1, 1, 22) ;
+border: 1px solid gray;
+color: gray;
+margin-left:20px;
+margin-top:10px;
+padding:5px;
+border-radius: 5px;
+min-width: 70px;
+}
 .userInfoContainer {
   width: 100%;
   display: flex;
@@ -49,7 +66,7 @@
   width: 85%;
   color: white;
   margin: 30px;
-  border: solid 1px red;
+
 }
 
 .userPictureContainer {
@@ -189,5 +206,22 @@
 
 .trend:hover {
   background-color: rgba(64, 64, 77, 0.9);
+}
+
+.spinner {
+  border: 5px solid #f3f3f3;
+  border-top: 5px solid #3498db;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 1s linear infinite;
+  display: none;
+  margin: 20px auto;
+  z-index:10000;
+}
+.spinnerBackground{
+  width:100vw;
+  height:100vh;
+  background-color: lightgray;
 
 }

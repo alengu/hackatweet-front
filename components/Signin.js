@@ -33,10 +33,10 @@ function Signin() {
     return (
         <div className={styles.registerContainer}>
             <div className={styles.registerSection}>
-                <p>Sign-in</p>
-                <input type="text" placeholder="Username" id="signInUsername" onChange={(e) => setusername(e.target.value)} value={username} />
-                <input type="password" placeholder="Password" id="signInPassword" onChange={(e) => setPassword(e.target.value)} value={password} />
-                <button id="connection" onClick={() => handleSignin()}> Sign in </button>
+                <p className = {styles.loginModalTitle}>Sign-in</p>
+                <input className = {styles.loginField} type="text" placeholder="Username" id="signInUsername" onChange={(e) => setusername(e.target.value)} value={username} />
+                <input className = {styles.loginField} type="password" placeholder="Password" id="signInPassword" onChange={(e) => setPassword(e.target.value)} value={password} />
+                <button className= {styles.modalSigninButton} id="connection" onClick={() => handleSignin()} > Sign in </button>
             </div>
         </div>
     )
