@@ -22,11 +22,14 @@ function LastTweets() {
   // delete tweet function
   async function handleDelete(tweetId) {
     try {
+      console.log('tweet id : ', tweetId)
+      console.log(tweetsData);
       const tweet = tweetsData.find((e) => e._id === tweetId);
       console.log(tweet);
       const tweetAuthor = tweet.author;
       console.log(tweetAuthor);
       if (tweetAuthor === author) {
+        console.log('on est dans la condition')
       const response = await fetch(
         `http://localhost:3000/tweets/${tweetId}`,
         {
@@ -36,7 +39,7 @@ function LastTweets() {
       );
       const deletedTweet = await response.json();
       console.log("Tweet deleted =>", deletedTweet.deletedCount);
-      setTweetsData(tweets.filter(tweet => tweet.id !== tweetId));
+      setTweetsData(tweets => tweets.filter(tweet => tweet.id !== tweetId));
     }
     } catch (error) {
       console.error("Deletion failed");

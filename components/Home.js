@@ -22,14 +22,19 @@ function Home() {
   let userUsername =
     token && useSelector((state) => state.users.value.username);
 
+  useEffect(() => {
+    if (!token) {
+      try {
+        router.push('/login');     
+    } catch(error) {
+        console.log('redirection échouée');
+    }
+    }
+
+  }, [])
+
   // redirects to signin page if not connected
-  if (!token) {
-    try {
-      router.push('/login');     
-  } catch(error) {
-      console.log('redirection échouée');
-  }
-  }
+
 
   //add a new tweet
   async function handleTweetSubmit() {

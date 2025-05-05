@@ -59,11 +59,11 @@ function Tweet(props) {
           {props.likes}
         </div>
         <div className={styles.deleteButton}>
-          <FontAwesomeIcon
+          {userId === props.author && (<FontAwesomeIcon
             icon={faTrashCan}
             onClick={() => props.onDelete(props.id)}
             className={styles.likeHeart}
-          />
+          />)}
         </div>
       </div>
     </div>
