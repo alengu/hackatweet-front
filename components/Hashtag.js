@@ -156,7 +156,7 @@ function Hashtag() {
 
         <div className={styles.hashtagRight}>
           <div className={styles.lastTrendsTitle}>
-            <h2>Last Trends</h2>
+            <h2 className={styles.lastTrendsTitleh2}>Last Trends</h2>
           </div>
 
           <div className={styles.lastTrendsContainer}>
