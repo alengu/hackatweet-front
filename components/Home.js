@@ -10,7 +10,6 @@ import Trends from "./Trends";
 function Home() {
   const router = useRouter();
   const [tweetContent, setTweetContent] = useState("");
-  const [tweets, setTweets] = useState([]);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
   let token = useSelector((state) => state.users.value.token);
@@ -42,17 +41,15 @@ function Home() {
       } catch (error) {
         console.log("redirection échouée");
       }
-    } else {
-      setIsCheckingAuth(false);
     }
   }, []);
 
-  if (isCheckingAuth)
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
-      </div>
-    );
+  // if (isCheckingAuth)
+  //   return (
+  //     <div className="flex justify-center items-center h-screen">
+  //       <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+  //     </div>
+  //   );
 
   async function handleTweetSubmit() {
     // manque la gestion des hashtags à l'ajout du tweet
@@ -70,10 +67,30 @@ function Home() {
       });
       const addedTweet = await response.json();
 
-      getTweets();
-      getTrends();
+      await getTweets();
+      await getTrends();
     } catch (error) {
       console.error("Submission failed", error);
+      alert("An error occurred. Please try again.");
+    }
+  }
+
+  // delete tweet function
+  async function handleDelete(tweetId) {
+    try {
+      const tweet = tweetsData.find((e) => e._id === tweetId);
+      const tweetAuthor = tweet.author;
+      if (tweetAuthor === author) {
+        await fetch(`http://localhost:3000/tweets/${tweetId}`, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        });
+
+        await getTweets();
+        await getTrends();
+      }
+    } catch (error) {
+      console.error("Deletion failed");
       alert("An error occurred. Please try again.");
     }
   }
@@ -143,7 +160,7 @@ function Home() {
             </div>
           </div>
           <div className={styles.homeCenterBottomContainer}>
-            <LastTweets tweets={tweetsData} />
+            <LastTweets tweets={tweetsData} handleDelete={handleDelete} />
           </div>
         </div>
 

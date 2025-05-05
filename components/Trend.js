@@ -4,7 +4,7 @@ import Link from "next/link";
 
 function Trend(props) {
   const router = useRouter();
-  console.log("hashtag ? =>", router.query.hashtags);
+  //console.log("hashtag ? =>", router.query.hashtags);
 
   return (
     <div className={styles.trend}>
