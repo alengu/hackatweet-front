@@ -1,6 +1,7 @@
 import styles from "../styles/HashTag.module.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../reducers/users";
 import moment from "moment";
 import Tweet from "./Tweet";
 import LastTweets from "./LastTweets";
@@ -9,13 +10,13 @@ import { useRouter } from "next/router";
 import Trends from "./Trends";
 
 function Hashtag() {
+
+  const dispatch = useDispatch();
   const [tweetContent, setTweetContent] = useState("");
   let token = useSelector((state) => state.users.value.token);
-  let author = token && useSelector((state) => state.users.value._id);
-  let userfirstName =
-    token && useSelector((state) => state.users.value.firstName);
-  let userUsername =
-    token && useSelector((state) => state.users.value.username);
+  let author = useSelector((state) => state.users.value._id);
+  let userfirstName = useSelector((state) => state.users.value.firstName);
+  let userUsername = useSelector((state) => state.users.value.username);
 
   async function handleLogoutClick() {
     dispatch(logout());
@@ -100,7 +101,7 @@ function Hashtag() {
             <Link href="/">
               <img
                 className={styles.logo}
-                src="/hackatweet-logo.jpg"
+                src="/hackatweet-logo2.png"
                 alt="Hackatweet Logo"
               />
             </Link>

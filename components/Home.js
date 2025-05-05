@@ -111,7 +111,7 @@ function Home() {
             <Link href="/">
               <img
                 className={styles.logo}
-                src="/hackatweet-logo.jpg"
+                src="/hackatweet-logo2.png"
                 alt="Hackatweet Logo"
               />
             </Link>
