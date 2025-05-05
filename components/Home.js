@@ -14,7 +14,7 @@ function Home() {
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const dispatch = useDispatch();
 
-  let user = useSelector((state) => state.users.value)
+  let user = useSelector((state) => state.users.value);
   let token = user.token;
   let author = user._id;
   let userfirstName = user.firstName;
@@ -73,14 +73,15 @@ function Home() {
       console.error("Submission failed", error);
       alert("An error occurred. Please try again.");
     }
-    setTweetContent('')
+    setTweetContent("");
   }
 
   // delete tweet function
   async function handleDelete(tweetId) {
+    console.log(tweetId);
     try {
       const tweet = tweetsData.find((e) => e._id === tweetId);
-      const tweetAuthor = tweet.author;
+      const tweetAuthor = tweet.author._id;
       if (tweetAuthor === author) {
         await fetch(`http://localhost:3000/tweets/${tweetId}`, {
           method: "DELETE",

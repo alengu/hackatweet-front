@@ -15,10 +15,13 @@ function LastTweets(props) {
       <Tweet
         key={data._id}
         id={data._id}
+        userId={data.author._id}
         firstName={data.author.firstName}
         username={data.author.username}
         content={data.content}
-        age={moment(moment(data.submittedAt, "YYYYMMDD,h:mm:ss")).add(  2,'h').fromNow()}
+        age={moment(moment(data.submittedAt, "YYYYMMDD,h:mm:ss"))
+          .add(2, "h")
+          .fromNow()}
         likes={data.userLikes.length}
         userLikes={data.userLikes}
         onDelete={props.handleDelete}

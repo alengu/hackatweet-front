@@ -73,6 +73,25 @@ function Hashtag() {
     })();
   }, []);
 
+  async function handleDelete(tweetId) {
+    try {
+      const tweet = tweetsData.find((e) => e._id === tweetId);
+      const tweetAuthor = tweet.author._id;
+      if (tweetAuthor === author) {
+        await fetch(`http://localhost:3000/tweets/${tweetId}`, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        });
+
+        await getTweets(hashtags);
+        await getTrends();
+      }
+    } catch (error) {
+      console.error("Deletion failed");
+      alert("An error occurred. Please try again.");
+    }
+  }
+
   return (
     <div>
       <main className={styles.main}>
@@ -130,7 +149,7 @@ function Hashtag() {
             </div>
           </div>
           <div className={styles.hashtagCenterBottomContainer}>
-            <LastTweets tweets={tweetsData} />
+            <LastTweets tweets={tweetsData} handleDelete={handleDelete} />
           </div>
         </div>
 
