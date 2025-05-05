@@ -1,6 +1,7 @@
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from 'next/router';
 import moment from "moment";
 import Tweet from "./Tweet";
 import LastTweets from "./LastTweets";
@@ -10,13 +11,27 @@ import Link from "next/link";
 import Trends from "./Trends";
 
 function Home() {
+  const router = useRouter();
   const [tweetContent, setTweetContent] = useState("");
+  const [tweets, setTweets] = useState([]);
+
   let token = useSelector((state) => state.users.value.token);
   let author = token && useSelector((state) => state.users.value._id);
   let userfirstName =
     token && useSelector((state) => state.users.value.firstName);
   let userUsername =
     token && useSelector((state) => state.users.value.username);
+
+  useEffect(() => {
+    if (!token) {
+      try {
+        router.push('/login');     
+    } catch(error) {
+        console.log('redirection échouée');
+    }
+    }
+
+  }, [])
 
   //add a new tweet
   async function handleTweetSubmit() {
@@ -29,7 +44,6 @@ function Home() {
     try {
       const response = await fetch(
         "http://localhost:3000/tweets/",
-
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -37,8 +51,9 @@ function Home() {
         }
       );
       const addedTweet = await response.json();
-      console.log("added fact =>", addedTweet);
-      console.log("id de l'added fact = ", addedTweet._id);
+      console.log("added tweet =>", addedTweet);
+      console.log("id de l'added tweet = ", addedTweet._id);
+      setTweets(tweet);
     } catch (error) {
       console.error("Submission failed", error);
       alert("An error occurred. Please try again.");

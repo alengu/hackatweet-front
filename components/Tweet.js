@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 
 function Tweet(props) {
+  let token = useSelector((state) => state.users.value.token);
   const [isLiked, setIsLiked] = useState(false);
   let likeStyle = isLiked ? { color: "red" } : {};
   const [likesNumber, setLikesNumber] = useState(0);
@@ -78,14 +79,14 @@ function Tweet(props) {
             style={{ marginRight: "5px", ...likeStyle }}
             onClick={() => handleLikeClick()}
           />
-          {likesNumber}
+          {props.likes}
         </div>
         <div className={styles.deleteButton}>
-          <FontAwesomeIcon
+          {userId === props.author && (<FontAwesomeIcon
             icon={faTrashCan}
-            onClick={() => console.log("liked")}
+            onClick={() => props.onDelete(props.id)}
             className={styles.likeHeart}
-          />
+          />)}
         </div>
       </div>
     </div>
