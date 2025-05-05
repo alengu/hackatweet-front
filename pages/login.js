@@ -1,8 +1,8 @@
 import styles from '../styles/login.module.css';
 import { useState } from 'react';
 import { Modal } from 'antd';
-import SignUp from '../components/SignUp';
-import SignIn from '../components/SignIn';
+import SignUp from '../components/Signup';
+import SignIn from '../components/Signin';
 
 function Login() {
     const [visibleModal, setVisibleModal] = useState(null);
