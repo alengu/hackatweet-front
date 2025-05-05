@@ -10,12 +10,13 @@ function LastTweets(props) {
   let author = token && useSelector((state) => state.users.value._id);
 
   const tweets = props.tweets.map((data, i) => {
+    console.log(data);
     return (
       <Tweet
         key={data._id}
         id={data._id}
-        firstName={data.author}
-        username={data.username}
+        firstName={data.author.firstName}
+        username={data.author.username}
         content={data.content}
         age={moment(data.submittedAt, "YYYYMMDD,h:mm:ss").fromNow()}
         likes={data.userLikes.length}

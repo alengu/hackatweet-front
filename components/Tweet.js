@@ -58,9 +58,6 @@ function Tweet(props) {
       );
       let tweetUnliked = responseUnlike.json();
     }
-    console.log("userId actuel : ", userId);
-    console.log("auteur du tweet : ", props.author);
-    console.log("C'est TON Tweet ? => ", userId === props.author);
   }
 
   return (

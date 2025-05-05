@@ -17,6 +17,57 @@ function Hashtag() {
   let userUsername =
     token && useSelector((state) => state.users.value.username);
 
+  const router = useRouter();
+
+  const [tweetsData, setTweetsData] = useState([]);
+  const [trendsData, setTrendsData] = useState([]);
+  const [hashtagsFilter, setHashtagsFilter] = useState(null);
+
+  const { hashtags } = router.query;
+
+  const getTweets = async (value) => {
+    const url = value
+      ? `http://localhost:3000/tweets?hashtag=${value}`
+      : "http://localhost:3000/tweets";
+    const response = await fetch(url);
+    const data = await response.json();
+    setTweetsData(data);
+  };
+
+  const getTrends = async () => {
+    const response = await fetch("http://localhost:3000/hashtags/");
+    const data = await response.json();
+    setTrendsData(data);
+  };
+
+  useEffect(() => {
+    if (!token) {
+      try {
+        router.push("/login");
+      } catch (error) {
+        console.log("redirection échouée");
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      await getTweets(hashtags);
+    })();
+  }, [hashtags, router.isReady]);
+
+  useEffect(() => {
+    (async () => {
+      await getTweets(hashtagsFilter);
+    })();
+  }, [hashtagsFilter]);
+
+  useEffect(() => {
+    (async () => {
+      await getTrends();
+    })();
+  }, []);
+
   return (
     <div>
       <main className={styles.main}>
@@ -55,11 +106,16 @@ function Hashtag() {
               <h1> Hashtag </h1>
             </div>
             <div className={styles.hashtagSearchContainer}>
-              #<input className={styles.hashtagSearch} placeholder="" />
+              #
+              <input
+                className={styles.hashtagSearch}
+                placeholder=""
+                onChange={(e) => setHashtagsFilter(e.target.value)}
+              />
             </div>
           </div>
           <div className={styles.hashtagCenterBottomContainer}>
-            <LastTweets />
+            <LastTweets tweets={tweetsData} />
           </div>
         </div>
 
@@ -68,7 +124,9 @@ function Hashtag() {
             <h2>Last Trends</h2>
           </div>
 
-          <div className={styles.lastTrendsContainer}>{<Trends />}</div>
+          <div className={styles.lastTrendsContainer}>
+            {<Trends trends={trendsData} />}
+          </div>
         </div>
       </main>
     </div>
