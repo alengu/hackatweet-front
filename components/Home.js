@@ -18,6 +18,21 @@ function Home() {
   let userUsername =
     token && useSelector((state) => state.users.value.username);
 
+  const [tweetsData, setTweetsData] = useState([]);
+  const [trendsData, setTrendsData] = useState([]);
+
+  const getTweets = async () => {
+    const response = await fetch("http://localhost:3000/tweets/");
+    const data = await response.json();
+    setTweetsData(data);
+  };
+
+  const getTrends = async () => {
+    const response = await fetch("http://localhost:3000/hashtags/");
+    const data = await response.json();
+    setTrendsData(data);
+  };
+
   //add a new tweet
   async function handleTweetSubmit() {
     const tweet = {
@@ -36,14 +51,21 @@ function Home() {
           body: JSON.stringify(tweet),
         }
       );
-      const addedTweet = await response.json();
-      console.log("added fact =>", addedTweet);
-      console.log("id de l'added fact = ", addedTweet._id);
+
+      getTweets();
+      getTrends();
     } catch (error) {
       console.error("Submission failed", error);
       alert("An error occurred. Please try again.");
     }
   }
+
+  useEffect(() => {
+    (async () => {
+      await getTweets();
+      await getTrends();
+    })();
+  }, []);
 
   return (
     <div>
@@ -51,11 +73,11 @@ function Home() {
         <div className={styles.homeLeft}>
           <div className={styles.logoContainer}>
             <Link href="/">
-            <img
-              className={styles.logo}
-              src="hackatweet-logo.jpg"
-              alt="Hackatweet Logo"
-            />
+              <img
+                className={styles.logo}
+                src="hackatweet-logo.jpg"
+                alt="Hackatweet Logo"
+              />
             </Link>
           </div>
           <div className={styles.userInfoContainer}>
@@ -103,7 +125,7 @@ function Home() {
             </div>
           </div>
           <div className={styles.homeCenterBottomContainer}>
-            <LastTweets />
+            <LastTweets tweets={tweetsData} />
           </div>
         </div>
 
@@ -112,7 +134,9 @@ function Home() {
             <h2>Trends</h2>
           </div>
 
-          <div className={styles.lastTrendsContainer}>{<Trends />}</div>
+          <div className={styles.lastTrendsContainer}>
+            {<Trends trends={trendsData} />}
+          </div>
         </div>
       </main>
     </div>
