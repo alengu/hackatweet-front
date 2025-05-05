@@ -104,12 +104,11 @@ cursor: pointer;
 }
 
 .hashtagCenterTopContainer {
-  height: 200px;
+  height: 150px;
   width: 100%;
   display: flex;
   flex-direction: column;
-
-  border-bottom: gray;
+  border-bottom: gray 1px solid;
 }
 
 .pageTitle {

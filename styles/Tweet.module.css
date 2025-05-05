@@ -2,8 +2,7 @@
   display: flex;
   flex-direction: column;
   padding: 10px;
-  border-bottom:1px solid gray;
-
+  border-bottom: 1px solid gray;
 }
 
 .tweetBottom {
@@ -24,12 +23,12 @@
 }
 
 .hashtagLink {
-  color: #1DA1F2;
+  color: #1da1f2;
 }
 
-.tweetAge{
-    color:gray;
-    margin-left: 5px;
+.tweetAge {
+  color: gray;
+  margin-left: 5px;
 }
 .tweetContent {
   margin: 5px;
@@ -37,17 +36,16 @@
 }
 .tweetLikes {
   margin: 5px;
-  margin-right:8px;
-  cursor:pointer;
+  margin-right: 8px;
+  cursor: pointer;
 }
 
 .deleteButton {
   margin: 5px;
-  cursor:pointer;
+  cursor: pointer;
 }
 
 .userPictureContainer {
- 
   height: 100%;
   min-width: 30px;
   margin-right: 8px;
@@ -59,7 +57,7 @@
   border-radius: 50%;
 }
 
-.tweetTop{
+.tweetTop {
   display: flex;
   flex-direction: row;
   align-items: center;

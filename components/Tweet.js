@@ -14,7 +14,6 @@ function Tweet(props) {
   const [likesNumber, setLikesNumber] = useState(0);
   let userId = useSelector((state) => state.users.value._id);
 
-
   useEffect(() => {
     (async () => {
       const response = await fetch(
@@ -67,12 +66,8 @@ function Tweet(props) {
     return content.split(/(\s+)/).map((word, index) => {
       if (word.startsWith("#")) {
         return (
-          <Link
-            className={styles.hashtagLink}
-            key={index}
-            href={`/hashtags/${word.replace("#", "")}`}
-          >
-            {word}
+          <Link key={index} href={`/hashtags/${word.replace("#", "")}`}>
+            <span className={styles.hashtagLink}>{word}</span>
           </Link>
         );
       }
