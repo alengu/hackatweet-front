@@ -36,7 +36,7 @@ function Signup() {
                 <h2 className = {styles.loginModalTitle}>Create your Hackatweet account</h2>
                 <input className={styles.loginField} type="text" placeholder="Firstname" id="signUpFirstname" onChange={(e) => setFirstName(e.target.value)} value={firstname} />
                 <input className={styles.loginField} type="text" placeholder="Username" id="signUpUsername" onChange={(e) => setusername(e.target.value)} value={username} />
-                <input className={styles.loginField} type="password" placeholder="Password" id="signUpPassword" onChange={(e) => setPassword(e.target.value)} value={password} />
+                <input className={styles.loginField} type="password" placeholder="Password" id="signUpPassword" onChange={(e) => setPassword(e.target.value)} value={password} onKeyDown={(e)=>{if(e.key==="Enter"){handleSignup()}}} />
                 <button className= {styles.modalSigninButton} id="register" onClick={() => handleSignup()}> Sign up </button>
                 <div className={styles.errorMsg}> {msg} </div>
             </div>

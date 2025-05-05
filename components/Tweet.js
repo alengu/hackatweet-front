@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
 import Link from "next/link";
+import { useResetIconStyle } from "antd/es/theme/internal";
 
 function Tweet(props) {
   let token = useSelector((state) => state.users.value.token);
@@ -12,6 +13,7 @@ function Tweet(props) {
   let likeStyle = isLiked ? { color: "red" } : {};
   const [likesNumber, setLikesNumber] = useState(0);
   let userId = useSelector((state) => state.users.value._id);
+  let profilePic=useSelector((state) => state.users.value.profilePic)
 
   useEffect(() => {
     (async () => {
@@ -84,7 +86,7 @@ function Tweet(props) {
         <div className={styles.userPictureContainer}>
           <img
             className={styles.userPicture}
-            src="anonymousUser.jpg"
+            src={profilePic}
             alt="User Profile Picture"
           />
         </div>
