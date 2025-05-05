@@ -4,6 +4,7 @@ import { faHeart, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import moment from "moment";
+import Link from "next/link";
 
 function Tweet(props) {
   let token = useSelector((state) => state.users.value.token);
@@ -60,6 +61,19 @@ function Tweet(props) {
     }
   }
 
+  const addHashtagLink = (content) => {
+    return content.split(/(\s+)/).map((word, index) => {
+      if (word.startsWith("#")) {
+        return (
+          <Link key={index} href={`/hashtags/${word.replace("#", "")}`}>
+            {word}
+          </Link>
+        );
+      }
+      return word;
+    });
+  };
+
   return (
     <div className={styles.tweetCard}>
       <div className={styles.tweetTop}>
@@ -70,7 +84,7 @@ function Tweet(props) {
         <span className={styles.userUsername}> @{props.username} </span> .
         <span className={styles.tweetAge}> {props.age}</span>
       </div>
-      <div className={styles.tweetContent}>{props.content}</div>
+      <div className={styles.tweetContent}>{addHashtagLink(props.content)}</div>
       <div className={styles.tweetBottom}>
         <div className={styles.tweetLikes} style={likeStyle}>
           <FontAwesomeIcon
