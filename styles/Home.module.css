@@ -175,6 +175,7 @@
 
 .trendsContainer {
   overflow: auto;
+
 }
 
 .trend {
@@ -184,4 +185,9 @@
   justify-content: center;
   align-items: left;
   padding: 20px;
+}
+
+.trend:hover {
+  background-color: rgba(64, 64, 77, 0.9);
+
 }

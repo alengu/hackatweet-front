@@ -94,13 +94,15 @@
 .hashtagSearchContainer {
   display: flex;
   padding: 20px;
+  text-align: center;
+  align-items: center;
+
 }
 .hashtagSearch{
     width:100%;
     min-height:40px;
 }
 .hashtagCenterBottomContainer {
-  border: 1px solid red;
   height: 75%;
   width: 100%;
 }
@@ -128,4 +130,17 @@
 
 .lastTrendsContainer {
   width: 100%;
+}
+
+.trend {
+  height: 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
+  padding: 20px;
+}
+
+.trend:hover {
+  opacity:0.5;
 }

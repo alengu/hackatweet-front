@@ -1,16 +1,16 @@
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import moment from "moment";
-import Tweet from "./Tweet";
-import LastTweets from "./LastTweets";
-import Hashtag from "./Hashtag";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
+import LastTweets from "./LastTweets";
+import Link from "next/link";
 import Trends from "./Trends";
 
 function Home() {
+  const router = useRouter();
   const [tweetContent, setTweetContent] = useState("");
+
   let token = useSelector((state) => state.users.value.token);
   let author = token && useSelector((state) => state.users.value._id);
   let userfirstName =
@@ -33,8 +33,18 @@ function Home() {
     setTrendsData(data);
   };
 
-  //add a new tweet
+  useEffect(() => {
+    if (!token) {
+      try {
+        router.push("/login");
+      } catch (error) {
+        console.log("redirection échouée");
+      }
+    }
+  }, []);
+
   async function handleTweetSubmit() {
+    // manque la gestion des hashtags à l'ajout du tweet
     const tweet = {
       author,
       content: tweetContent,
@@ -42,15 +52,12 @@ function Home() {
     };
 
     try {
-      const response = await fetch(
-        "http://localhost:3000/tweets/",
-
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(tweet),
-        }
-      );
+      const response = await fetch("http://localhost:3000/tweets/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(tweet),
+      });
+      const addedTweet = await response.json();
 
       getTweets();
       getTrends();
@@ -75,7 +82,7 @@ function Home() {
             <Link href="/">
               <img
                 className={styles.logo}
-                src="hackatweet-logo.jpg"
+                src="/hackatweet-logo.jpg"
                 alt="Hackatweet Logo"
               />
             </Link>
