@@ -6,7 +6,7 @@ import Tweet from "./Tweet";
 import LastTweets from "./LastTweets";
 import Hashtag from "./Hashtag";
 import Link from "next/link";
-
+import { useRouter } from "next/router";//récupération de l'url
 import Trends from "./Trends";
 
 function Home() {
@@ -18,8 +18,9 @@ function Home() {
   let userUsername =
     token && useSelector((state) => state.users.value.username);
 
-  //add a new tweet
-  async function handleTweetSubmit() {
+ 
+
+  async function handleTweetSubmit() {// manque la gestion des hashtags à l'ajout du tweet
     const tweet = {
       author,
       content: tweetContent,
@@ -53,7 +54,7 @@ function Home() {
             <Link href="/">
             <img
               className={styles.logo}
-              src="hackatweet-logo.jpg"
+              src="/hackatweet-logo.jpg"
               alt="Hackatweet Logo"
             />
             </Link>
