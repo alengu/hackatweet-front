@@ -1,18 +1,15 @@
 import styles from "../styles/Home.module.css";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useRouter } from 'next/router';
-import moment from "moment";
-import Tweet from "./Tweet";
+import { useRouter } from "next/router";
+
 import LastTweets from "./LastTweets";
-import Hashtag from "./Hashtag";
 import Link from "next/link";
 import Trends from "./Trends";
 
 function Home() {
   const router = useRouter();
   const [tweetContent, setTweetContent] = useState("");
-  const [tweets, setTweets] = useState([]);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
   let token = useSelector((state) => state.users.value.token);
@@ -22,25 +19,40 @@ function Home() {
   let userUsername =
     token && useSelector((state) => state.users.value.username);
 
+  const [tweetsData, setTweetsData] = useState([]);
+  const [trendsData, setTrendsData] = useState([]);
+
+  const getTweets = async () => {
+    const response = await fetch("http://localhost:3000/tweets/");
+    const data = await response.json();
+    setTweetsData(data);
+  };
+
+  const getTrends = async () => {
+    const response = await fetch("http://localhost:3000/hashtags/");
+    const data = await response.json();
+    setTrendsData(data);
+  };
+
   useEffect(() => {
     if (!token) {
       try {
-        router.push('/login');     
-    } catch(error) {
-        console.log('redirection échouée');
-    } 
-    } else {
-      setIsCheckingAuth(false);
+        router.push("/login");
+      } catch (error) {
+        console.log("redirection échouée");
+      }
     }
-  }, [])
+  }, []);
 
-  if (isCheckingAuth) return (
-    <div className="flex justify-center items-center h-screen">
-      <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
-    </div>
-  );;
+  // if (isCheckingAuth)
+  //   return (
+  //     <div className="flex justify-center items-center h-screen">
+  //       <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+  //     </div>
+  //   );
 
-  async function handleTweetSubmit() {// manque la gestion des hashtags à l'ajout du tweet
+  async function handleTweetSubmit() {
+    // manque la gestion des hashtags à l'ajout du tweet
     const tweet = {
       author,
       content: tweetContent,
@@ -48,23 +60,47 @@ function Home() {
     };
 
     try {
-      const response = await fetch(
-        "http://localhost:3000/tweets/",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(tweet),
-        }
-      );
+      const response = await fetch("http://localhost:3000/tweets/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(tweet),
+      });
       const addedTweet = await response.json();
-      console.log("added tweet =>", addedTweet);
-      console.log("id de l'added tweet = ", addedTweet._id);
-      setTweets(tweet);
+
+      await getTweets();
+      await getTrends();
     } catch (error) {
       console.error("Submission failed", error);
       alert("An error occurred. Please try again.");
     }
   }
+
+  // delete tweet function
+  async function handleDelete(tweetId) {
+    try {
+      const tweet = tweetsData.find((e) => e._id === tweetId);
+      const tweetAuthor = tweet.author;
+      if (tweetAuthor === author) {
+        await fetch(`http://localhost:3000/tweets/${tweetId}`, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+        });
+
+        await getTweets();
+        await getTrends();
+      }
+    } catch (error) {
+      console.error("Deletion failed");
+      alert("An error occurred. Please try again.");
+    }
+  }
+
+  useEffect(() => {
+    (async () => {
+      await getTweets();
+      await getTrends();
+    })();
+  }, []);
 
   return (
     <div>
@@ -72,11 +108,11 @@ function Home() {
         <div className={styles.homeLeft}>
           <div className={styles.logoContainer}>
             <Link href="/">
-            <img
-              className={styles.logo}
-              src="/hackatweet-logo.jpg"
-              alt="Hackatweet Logo"
-            />
+              <img
+                className={styles.logo}
+                src="/hackatweet-logo.jpg"
+                alt="Hackatweet Logo"
+              />
             </Link>
           </div>
           <div className={styles.userInfoContainer}>
@@ -124,7 +160,7 @@ function Home() {
             </div>
           </div>
           <div className={styles.homeCenterBottomContainer}>
-            <LastTweets />
+            <LastTweets tweets={tweetsData} handleDelete={handleDelete} />
           </div>
         </div>
 
@@ -133,7 +169,9 @@ function Home() {
             <h2>Trends</h2>
           </div>
 
-          <div className={styles.lastTrendsContainer}>{<Trends />}</div>
+          <div className={styles.lastTrendsContainer}>
+            {<Trends trends={trendsData} />}
+          </div>
         </div>
       </main>
     </div>

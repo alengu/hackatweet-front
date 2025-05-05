@@ -58,8 +58,8 @@ function Tweet(props) {
       );
       let tweetUnliked = responseUnlike.json();
     }
-    console.log('userId actuel : ', userId);
-    console.log('auteur du tweet : ', props.author);
+    console.log("userId actuel : ", userId);
+    console.log("auteur du tweet : ", props.author);
     console.log("C'est TON Tweet ? => ", userId === props.author);
   }
 
@@ -82,14 +82,15 @@ function Tweet(props) {
             style={{ marginRight: "5px", ...likeStyle }}
             onClick={() => handleLikeClick()}
           />
-          {props.likes}
+          {likesNumber}
         </div>
         <div className={styles.deleteButton}>
-          {userId === props.firstName && (<FontAwesomeIcon
-            icon={faTrashCan}
-            onClick={() => props.onDelete(props.id)}
-            className={styles.likeHeart}
-          />
+          {userId === props.firstName && (
+            <FontAwesomeIcon
+              icon={faTrashCan}
+              onClick={() => props.onDelete(props.id)}
+              className={styles.likeHeart}
+            />
           )}
         </div>
       </div>
