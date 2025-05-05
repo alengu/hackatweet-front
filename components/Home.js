@@ -7,13 +7,13 @@ import Tweet from "./Tweet";
 import LastTweets from "./LastTweets";
 import Hashtag from "./Hashtag";
 import Link from "next/link";
-import { useRouter } from "next/router";//récupération de l'url
 import Trends from "./Trends";
 
 function Home() {
   const router = useRouter();
   const [tweetContent, setTweetContent] = useState("");
   const [tweets, setTweets] = useState([]);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
   let token = useSelector((state) => state.users.value.token);
   let author = token && useSelector((state) => state.users.value._id);
@@ -28,12 +28,17 @@ function Home() {
         router.push('/login');     
     } catch(error) {
         console.log('redirection échouée');
+    } 
+    } else {
+      setIsCheckingAuth(false);
     }
-    }
-
   }, [])
 
- 
+  if (isCheckingAuth) return (
+    <div className="flex justify-center items-center h-screen">
+      <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+    </div>
+  );;
 
   async function handleTweetSubmit() {// manque la gestion des hashtags à l'ajout du tweet
     const tweet = {
