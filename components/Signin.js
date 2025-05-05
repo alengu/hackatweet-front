@@ -35,7 +35,7 @@ function Signin() {
             <div className={styles.registerSection}>
                 <p className = {styles.loginModalTitle}>Sign-in</p>
                 <input className = {styles.loginField} type="text" placeholder="Username" id="signInUsername" onChange={(e) => setusername(e.target.value)} value={username} />
-                <input className = {styles.loginField} type="password" placeholder="Password" id="signInPassword" onChange={(e) => setPassword(e.target.value)} value={password} />
+                <input className = {styles.loginField} type="password" placeholder="Password" id="signInPassword" onChange={(e) => setPassword(e.target.value)} value={password} onKeyDown={(e)=>{if(e.key==="Enter"){handleSignin()}}} />
                 <button className= {styles.modalSigninButton} id="connection" onClick={() => handleSignin()} > Sign in </button>
             </div>
         </div>
